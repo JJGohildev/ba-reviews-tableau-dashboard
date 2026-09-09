@@ -29,7 +29,7 @@ A closer view of the workbook's Rating Trend worksheet. The missing-date indicat
 
 ![Actual Tableau Rating Trend worksheet](screenshots/02_rating_trend.png)
 
-Both images are captures of the native Tableau workbook, with surrounding application controls removed. No charts have been recreated in HTML.
+Screenshots from the Tableau workbook.
 
 ## What I worked on
 
