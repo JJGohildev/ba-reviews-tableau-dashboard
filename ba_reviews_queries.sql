@@ -3,7 +3,8 @@
    SQL layer: schema + analysis queries feeding the Tableau dashboard
    Dialect: ANSI SQL / SQL Server flavored (works on Snowflake/Postgres
    with minor tweaks, noted inline)
-   Source: Skytrax (airlinequality.com) reviews, CC0-licensed redistribution
+   Source attribution: Skytrax (airlinequality.com), per supplied project notes.
+   Exact redistributed dataset URL and license reference remain unverified.
    ===================================================================== */
 
 -- ---------------------------------------------------------------------

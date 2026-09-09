@@ -1,52 +1,63 @@
-# British Airways Reviews — Tableau Dashboard
+# British Airways Reviews in Tableau
 
-A Tableau Public dashboard analyzing 901 real British Airways customer reviews (Skytrax / airlinequality.com, 2011–2015), covering rating trends, service-dimension performance, cabin-class and traveller-type comparisons, sentiment, and reviewer geography.
+I built this project to explore how reviewers rated their British Airways experience, which service areas scored highest, and how ratings varied across passenger groups and time.
 
-This project pairs with a SQL analysis layer and an Excel workbook built on the same cleaned dataset — see [Related work](#related-work) below.
+The project combines a Tableau workbook with SQL analysis and an Excel summary using the same cleaned review dataset.
 
-## Live dashboard
+**[Download the Tableau workbook](tableau/British_Airways_Reviews.twbx)** · **[Read the case study](case_study.md)** · **[View the SQL](ba_reviews_queries.sql)**
 
-Published on Tableau Public: **[add your Tableau Public link here after publishing]**
+## At a glance
 
-## Screenshots
+- 901 review records in the supplied dataset.
+- Average overall rating of 5.88 out of 10, excluding missing ratings.
+- 56.8% of reviews marked Recommended as Yes.
+- Dated records range from October 2011 to August 2015; one review has no date.
 
-**Overview & Trends**
-![Overview & Trends dashboard](screenshots/01_overview_trends.png)
+These figures describe this historical review sample, not all British Airways passengers or current airline performance.
 
-**Segments & Geography**
-![Segments & Geography dashboard](screenshots/02_segments_geography.png)
+## Tableau screenshots
 
-## What's in the dashboard
+### Overview & Trends
 
-Two dashboards built from 8 worksheets in Tableau Public:
+The workbook combines the overview and trend chart in one dashboard. It includes headline KPIs, the rating trend, rating-based sentiment categories, and service-rating comparisons.
 
-- **Overview & Trends** — headline KPIs (901 total reviews, 5.88 average rating, 56.8% recommended), a month-by-month average rating trend line, a sentiment breakdown donut (Positive/Neutral/Negative/Unknown), and a ratings-breakdown bar chart ranking all 7 service dimensions from strongest (Cabin Staff, 3.53) to weakest (Inflight Entertainment, 2.62).
-- **Segments & Geography** — average rating and % recommended by cabin class (First Class highest at 65.1%, Economy lowest at 52.6%) and by traveller type (Solo Leisure highest at 60.6%, Business travellers lowest at 31.3%), a world map sized and colored by review volume and average rating per reviewer country, and a full review-level detail table (901 rows) for drill-down.
+![Actual Tableau Overview and Trends dashboard](screenshots/01_overview_trends.png)
 
-## Calculated fields
+### Rating Trend
 
-Three Tableau calculated fields power the dashboard — full formulas in `CALCULATED_FIELDS_library.md`:
+A closer view of the workbook's Rating Trend worksheet. The missing-date indicator is retained from the original view. A line joining distant observations should not be interpreted as continuous monthly evidence.
 
-- **Recommended Flag** — converts Yes/No into 0/1 so it can be averaged into a "% Recommended" metric.
-- **Review Month (Trend)** — a continuous, truncated-to-month date field for the trend line.
-- **Has Route Data** — flags whether a review has route information filled in (used to exclude blanks from route-based views).
+![Actual Tableau Rating Trend worksheet](screenshots/02_rating_trend.png)
 
-The ratings-breakdown chart uses Tableau's Measure Names/Measure Values drag technique instead of a calculated field — selecting all 7 service-rating columns and dragging them together onto Rows.
+Both images are captures of the native Tableau workbook, with surrounding application controls removed. No charts have been recreated in HTML.
 
-## Tools used
+## What I worked on
 
-- **Tableau Public** — data connection, calculated fields, worksheets, dashboards
-- **SQL** (`ba_reviews_queries.sql`) — the same KPI logic (monthly trend, ratings by service dimension, ratings by cabin class/traveller type, geographic breakdown, sentiment breakdown, data quality checks) expressed as a queryable SQL layer over the cleaned dataset
-- **Excel** (`BA_Reviews_Workbook.xlsx`) — a companion workbook with a raw-data sample, the full cleaned dataset, and a formula-driven KPI summary sheet (AVERAGE, COUNTIF, AVERAGEIF) matching the dashboard's headline numbers
+- Connected the cleaned review data to Tableau and defined calculated fields for recommendation rate and review month.
+- Built Overview & Trends and Segments & Geography dashboards.
+- Compared service ratings, cabin classes, traveller types, and reviewer countries.
+- Included SQL queries and an Excel workbook for related analysis and KPI checks.
 
-## Data notes
+## Project files
 
-- Source: Skytrax (airlinequality.com) reviews, redistributed under a CC0 (public-domain-equivalent) license via an open GitHub dataset.
-- `AuthorCountry` is used as the geographic dimension (99.8% filled) rather than `Route`, which is free text and only filled on ~12% of reviews.
-- `SentimentCategory` (Positive/Neutral/Negative/Unknown) is derived from `OverallRating` during cleaning (≥7 / 4–6 / ≤3 / no rating) rather than from NLP on the review text.
-- `TravellerType` is sparse (~12% filled) and treated as a secondary comparison rather than a primary finding — the "Unknown" bucket dominates that field by design.
-- Review titles are largely generic boilerplate text ("British Airways customer review") rather than user-written headlines, so title text wasn't usable as an analysis dimension.
+| Resource | Contents |
+| --- | --- |
+| [Packaged Tableau workbook](tableau/British_Airways_Reviews.twbx) | Workbook with its data extract included |
+| [Case study](case_study.md) | Questions, approach, findings, and limitations |
+| [Calculated fields](CALCULATED_FIELDS_library.md) | The formulas found in the supplied workbook |
+| [SQL analysis](ba_reviews_queries.sql) | Schema, analysis queries, and data-quality checks |
+| [Excel workbook](BA_Reviews_Workbook.xlsx) | Companion data and KPI summary |
+| [Cleaned data](data/ba_reviews_clean.csv) | Review records used in the repository |
+| [Data notes](DATA_NOTES.md) | Coverage, missing values, and source information |
 
-## Data note (licensing)
+## Open the workbook
 
-All review data in this project (`data/ba_reviews_clean.csv`) is real, publicly available customer review data released under a CC0 license. No personally identifying information is included beyond the reviewer's self-reported country.
+Download the TWBX file and open it in a compatible version of Tableau Public or Tableau Desktop. It was exported from Tableau Public 2026.2 and includes its extract, so it does not depend on the original local CSV path.
+
+Use the dashboard tabs to explore Overview & Trends and Segments & Geography. The workbook also includes individual worksheets for a closer look at the charts.
+
+## Interpretation notes
+
+SentimentCategory is derived from the overall rating; it is not text-based sentiment analysis. Reviewer country describes the author's location, not a flight destination. Route and traveller-type fields are sparse, so segment comparisons need their review counts alongside them.
+
+The supplied project documentation attributes the reviews to Skytrax / airlinequality.com. The exact redistributed dataset URL and its license have not been verified; see the data notes. This is an independent personal project and is not affiliated with British Airways.
