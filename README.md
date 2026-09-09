@@ -16,6 +16,12 @@ The Tableau workbook uses the same cleaned review dataset as the SQL analysis an
 | Dated records | 900 across 19 observed months |
 | Date coverage | October 2011 to August 2015, with gaps |
 
+## Key findings
+
+- Cabin staff received the highest average service rating: 3.53 out of 5 from 899 responses.
+- Inflight entertainment averaged 2.62 out of 5 from 865 responses, making it a useful area for further investigation.
+- Wi-Fi averaged 2.64, but only 14 reviews included a score, so that comparison needs caution.
+
 ## Dashboard previews
 
 ### Overview & Trends
