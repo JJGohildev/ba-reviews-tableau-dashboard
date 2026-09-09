@@ -4,7 +4,7 @@ I built this project to explore how reviewers rated their British Airways experi
 
 The Tableau workbook uses the same cleaned review dataset as the SQL analysis and Excel summary in this repository.
 
-**[Download the Tableau workbook](tableau/British_Airways_Reviews.twbx)** · **[Read the case study](case_study.md)** · **[View the SQL](ba_reviews_queries.sql)**
+**[Download the Tableau workbook](British_Airways_Reviews_Final.twbx)** · **[Read the case study](case_study.md)** · **[View the SQL](ba_reviews_queries.sql)**
 
 ## At a glance
 
