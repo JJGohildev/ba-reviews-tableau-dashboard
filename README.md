@@ -42,7 +42,7 @@ These images are captures of the native Tableau workbook.
 
 | Resource | Contents |
 | --- | --- |
-| [Tableau workbook](tableau/British_Airways_Reviews.twbx) | Three dashboards with the data extract included |
+| [Tableau workbook](British_Airways_Reviews_Final.twbx) | Three dashboards with the data extract included |
 | [Case study](case_study.md) | Approach, findings and interpretation |
 | [Calculated fields](CALCULATED_FIELDS_library.md) | Workbook formulas and KPI definitions |
 | [SQL analysis](ba_reviews_queries.sql) | Analysis queries and data-quality checks |
