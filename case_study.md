@@ -1,59 +1,43 @@
 # British Airways Reviews: Case Study
 
-I used this project to explore what an airline review dataset can tell us about customer experience, and where its limitations matter. I built the analysis in Tableau, with SQL queries and an Excel workbook supporting the same set of review records.
+I wanted to understand what sat behind the headline rating in an airline review dataset. A single average can hide differences between service areas, passenger groups, and the amount of evidence available for each comparison.
 
-**Tools:** Tableau, SQL, and Excel  
-**Project type:** Personal analytics project  
-**Dataset:** 901 reviews, with dated records from October 2011 to August 2015
+I used Tableau for the dashboard, with SQL queries and an Excel summary supporting the same 901 review records. This is a personal analytics project using historical data.
 
-## Questions behind the analysis
+## Starting with the data
 
-I focused on overall ratings, recommendation rate, and the individual service scores. I also wanted to compare cabin classes and traveller types without overlooking how many reviews each group contained.
+The dataset contains overall ratings, service scores, recommendation responses, review dates, passenger details, and review text. I checked completeness before deciding how prominently to display each field.
 
-The questions were straightforward: which service areas received stronger ratings, how did ratings change over time, and which comparisons had enough information to be useful?
+There are 896 overall ratings and 900 dated records. Traveller type is Unknown for 795 reviews, and only 104 records contain a route. Those gaps matter: the available traveller groups cannot reliably describe the entire sample.
 
-## Working with the data
+## Designing the analysis
 
-The cleaned dataset contains review dates, ratings, recommendation responses, cabin classes, traveller types, countries, and review text. Some fields are much more complete than others.
+The overview begins with review count, average rating, and recommendation rate. Service scores appear as horizontal bars on a common 0–5 scale, with concise labels and two-decimal values. The rating distribution groups scores into high, mid, low, and unrated bands. These are numerical categories, not an analysis of the language in the reviews.
 
-Route information is present for only 104 of the 901 reviews. Traveller type is marked Unknown for 795 records. I therefore treated route and traveller comparisons as supplementary views rather than using them to describe the full sample.
+![Tableau overview](screenshots/01_overview_trends.png)
 
-The geography view uses reviewer country. This is useful for understanding where reviewers say they are from, but it does not describe the routes they flew.
+For the time view, I used monthly points and a separate volume chart. The data contains long gaps, so a continuous line would imply observations that are not there. Review counts help distinguish a well-populated month from a month with only a few records. The undated record stays in the overview but is excluded from time-based charts.
 
-## Building the Tableau views
+![Monthly ratings and review counts](screenshots/02_rating_trend.png)
 
-The workbook contains two dashboards. Overview & Trends brings together the headline KPIs, a rating trend, sentiment categories, and service-rating comparisons. Segments & Geography contains cabin-class and traveller-type comparisons, a reviewer map, and a detail table.
+The segment charts use the same 0–10 rating scale and show review counts beside the averages. Recommendation rate stays in the tooltip as a separate measure. This keeps the label consistent with the length of each bar. The geography view describes reviewer origins, while a scrollable table lets readers inspect individual records and review text.
 
-![Tableau Overview and Trends dashboard](screenshots/01_overview_trends.png)
+## What stood out
 
-I used a recommendation flag to turn Yes responses into 1 and other responses into 0. Averaging that field gives the proportion of reviews that recommend the airline. The current CSV contains Yes and No responses only; missing responses in a future dataset would need separate handling.
+The average overall rating is 5.88 out of 10. Of 901 recommendation responses, 512 are Yes, giving a recommendation rate of 56.8%. High scores of 7–10 account for 452 reviews, or 50.2% of the dataset.
 
-The review-month calculation groups dated reviews by month. The chart still needs to be read alongside the number of observations in each period. Connecting points across a gap does not show what happened during the missing months.
+Cabin staff has the highest service average at 3.53 out of 5, based on 899 ratings. Inflight entertainment averages 2.62 from 865 ratings. That makes entertainment a reasonable area to investigate further within this sample, although the averages alone do not explain the cause.
 
-![Tableau Rating Trend worksheet](screenshots/02_rating_trend.png)
+Wi-Fi averages 2.64, but only 14 reviews contain a Wi-Fi score. Ground service has 93 ratings. I made those counts visible because their averages should not carry the same weight as categories with hundreds of responses.
 
-The SQL file contains related queries for KPIs, service dimensions, segments, geography, and data quality. The Excel workbook provides a companion summary. Those files make the analytical logic easier to inspect beyond the dashboard image.
+The monthly coverage is uneven. August 2015 contains only three reviews, and the latest date is 1 August. I would not interpret that month as evidence of a sustained change in service quality.
 
-## What I found
+## What I would investigate next
 
-Across the supplied CSV, the average overall rating is 5.88 out of 10, excluding missing ratings. Of 901 reviews, 512 recommend the airline, giving a recommendation rate of 56.8%.
+I would read the lower-rated entertainment reviews to identify recurring issues, then compare them with cabin class and the review date where those details are available. I would also want a more complete and recent dataset before drawing conclusions about changes over time.
 
-The service averages shown in Tableau range from approximately 3.53 out of 5 for cabin staff to 2.62 for inflight entertainment. This suggests a useful comparison within the sample, but each service may have a different number of submitted ratings. I would include those counts before treating the ranking as a firm conclusion.
+The main lesson from this project was to show the strength of the evidence alongside the result. Clear scales, correct labels, sample sizes, and visible gaps make the dashboard more useful than a polished average on its own.
 
-The workbook's sentiment categories are based on overall ratings: Positive for ratings of 7 or above, Neutral for 4 to 6, Negative for 3 or below, and Unknown for missing ratings. They summarize score bands rather than extracting sentiment from review text.
-
-## What the results can and cannot support
-
-These are historical, self-selected reviews. They do not represent every passenger, and they should not be used to describe the airline's current service quality.
-
-Sparse route and traveller information limits the strength of segment comparisons. One record has no review date, which is why the trend view displays a missing-value indicator. That record can contribute to overall KPIs while being unavailable for a dated trend.
-
-The analysis identifies patterns worth investigating. It does not establish why a rating changed or prove that one service issue caused a recommendation decision.
-
-## What I would improve next
-
-I would add review counts to the trend and segment views, make missing-date handling explicit, and show gaps in time rather than allowing long connecting lines to suggest continuous coverage. I would also change the service comparison to clearly visible horizontal bars and shorten its labels.
-
-These are improvements to the presentation of the existing Tableau work. The screenshots in this repository preserve the supplied workbook rather than replacing its visuals with a web mockup.
+These are self-selected historical reviews. The analysis describes patterns in this dataset; it does not establish causes or represent every British Airways passenger.
 
 [Back to the project overview](README.md)
