@@ -12,15 +12,11 @@ There are 896 overall ratings and 900 dated records. Traveller type is Unknown f
 
 ## Designing the analysis
 
-The overview begins with review count, average rating, and recommendation rate. Service scores appear as horizontal bars on a common 0–5 scale, with concise labels and two-decimal values. The rating distribution groups scores into high, mid, low, and unrated bands. These are numerical categories, not an analysis of the language in the reviews.
+I used common scales to compare service ratings and displayed review counts alongside segment averages. For the monthly view, I paired average ratings with review volume and left missing periods unconnected. This makes sparse months easier to recognise. The map shows reviewer countries, and the detail table provides access to individual reviews.
 
 ![Tableau overview](screenshots/01_overview_trends.png)
 
-For the time view, I used monthly points and a separate volume chart. The data contains long gaps, so a continuous line would imply observations that are not there. Review counts help distinguish a well-populated month from a month with only a few records. The undated record stays in the overview but is excluded from time-based charts.
-
 ![Monthly ratings and review counts](screenshots/02_rating_trend.png)
-
-The segment charts use the same 0–10 rating scale and show review counts beside the averages. Recommendation rate stays in the tooltip as a separate measure. This keeps the label consistent with the length of each bar. The geography view describes reviewer origins, while a scrollable table lets readers inspect individual records and review text.
 
 ## What stood out
 
@@ -35,8 +31,6 @@ The monthly coverage is uneven. August 2015 contains only three reviews, and the
 ## What I would investigate next
 
 I would read the lower-rated entertainment reviews to identify recurring issues, then compare them with cabin class and the review date where those details are available. I would also want a more complete and recent dataset before drawing conclusions about changes over time.
-
-The main lesson from this project was to show the strength of the evidence alongside the result. Clear scales, correct labels, sample sizes, and visible gaps make the dashboard more useful than a polished average on its own.
 
 These are self-selected historical reviews. The analysis describes patterns in this dataset; it does not establish causes or represent every British Airways passenger.
 
