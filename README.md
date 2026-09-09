@@ -30,12 +30,6 @@ Monthly averages are paired with review counts. Points are deliberately left unc
 
 ![Tableau monthly rating and review-volume dashboard](screenshots/02_rating_trend.png)
 
-### Segments & Geography
-
-Cabin-class and traveller-type bars show average ratings alongside review counts. The map shows reviewer origins, and the scrollable detail table provides individual records and review-text tooltips.
-
-![Tableau passenger segments and reviewer geography](screenshots/03_segments_geography.png)
-
 These images are captures of the native Tableau workbook.
 
 ## Project files
